@@ -2,378 +2,1004 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIMARA - SD Negeri 1 Raja</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>SIMARA — SD Negeri 1 Raja</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <style>
-
-/* ================================================
-   SEMUA STYLE TERISOLASI DI DALAM #simara-widget
-   Tidak akan mempengaruhi tema blog di luar elemen ini
-   ================================================ */
-
-#simara-widget,
-#simara-widget *,
-#simara-widget *::before,
-#simara-widget *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  line-height: 1;
+:root {
+  --ink:       #111827;
+  --ink2:      #374151;
+  --muted:     #6b7280;
+  --faint:     #9ca3af;
+  --rule:      #e5e7eb;
+  --bg:        #f9fafb;
+  --white:     #ffffff;
+  --accent:    #1d4ed8;
+  --accent2:   #0891b2;
+  --gold:      #d97706;
+  --red:       #dc2626;
+  --green:     #059669;
+  --purple:    #7c3aed;
+  --teal:      #0d9488;
+  --rose:      #e11d48;
+  --orange:    #ea580c;
+  --indigo:    #4f46e5;
+  --sky:       #0284c7;
+  --pink:      #db2777;
+  --r:         12px;
 }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
 
-#simara-widget {
-  background: #ffffff;
-  width: 100%;
-  padding: 32px 16px 40px;
-  border-radius: 20px;
-  border: 1px solid #e8edf5;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+.page { display: none; min-height: 100vh; flex-direction: column; }
+.page.active { display: flex; }
+
+/* ── TICKER ── */
+.ticker-bar {
+  background: var(--ink);
+  display: flex; align-items: center;
+  height: 36px; overflow: hidden; flex-shrink: 0;
+}
+.ticker-badge {
+  background: var(--accent);
+  padding: 0 16px; height: 100%;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 9px; font-weight: 700; color: #fff;
+  letter-spacing: 2px; text-transform: uppercase;
+  white-space: nowrap; flex-shrink: 0;
+  border-right: 1px solid rgba(255,255,255,.15);
+}
+.ticker-track {
+  flex: 1; overflow: hidden;
+  mask: linear-gradient(90deg, transparent, black 48px, black calc(100% - 48px), transparent);
+  -webkit-mask: linear-gradient(90deg, transparent, black 48px, black calc(100% - 48px), transparent);
+}
+.ticker-inner {
+  display: inline-flex; align-items: center; height: 36px;
+  white-space: nowrap;
+  animation: tickRun 30s linear infinite;
+}
+.ticker-inner span {
+  font-size: 11.5px; font-weight: 500; color: rgba(255,255,255,.8);
+  padding: 0 32px; letter-spacing: .2px;
+}
+.ticker-inner span::before {
+  content: '—'; margin-right: 16px; opacity: .3; font-size: 10px;
+}
+@keyframes tickRun {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* ── HEADER ── */
-#simara-widget .sw-header {
-  text-align: center;
-  margin-bottom: 28px;
-}
-
-#simara-widget .sw-logo-row {
-  display: inline-flex;
-  align-items: stretch;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(29,78,216,0.18);
-  margin-bottom: 14px;
-}
-
-#simara-widget .sw-logo-left {
-  background: linear-gradient(135deg, #1d4ed8 0%, #0891b2 100%);
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-#simara-widget .sw-logo-icon {
-  width: 32px;
-  height: 32px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-#simara-widget .sw-logo-name {
-  font-size: 20px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 3px;
-}
-
-#simara-widget .sw-logo-right {
-  background: #f0f6ff;
-  border-left: 1px solid rgba(29,78,216,0.12);
-  padding: 10px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3px;
-}
-
-#simara-widget .sw-logo-right .sw-sub1 {
-  font-size: 8.5px;
-  font-weight: 800;
-  color: #0891b2;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  display: block;
-}
-
-#simara-widget .sw-logo-right .sw-sub2 {
-  font-size: 9.5px;
-  font-weight: 700;
-  color: #64748b;
-  letter-spacing: 0.3px;
-  display: block;
-}
-
-#simara-widget .sw-school {
-  font-size: 14px;
-  font-weight: 700;
-  color: #1e293b;
-  letter-spacing: 0.2px;
-  display: block;
-}
-
-#simara-widget .sw-school-sub {
-  font-size: 11px;
-  font-weight: 600;
-  color: #94a3b8;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  display: block;
-  margin-top: 4px;
-}
-
-#simara-widget .sw-line {
-  width: 48px;
-  height: 3px;
-  background: linear-gradient(90deg, #1d4ed8, #0891b2);
-  border-radius: 99px;
-  margin: 12px auto 0;
-  display: block;
-}
-
-/* ── GRID ── */
-#simara-widget .sw-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  max-width: 860px;
-  margin: 0 auto;
-}
-
-/* ── CARD ── */
-#simara-widget .sw-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  text-decoration: none !important;
-  background: #f8faff;
-  border: 1.5px solid #e8edf5;
-  border-radius: 16px;
-  padding: 24px 12px 20px;
-  cursor: pointer;
-  transition:
-    transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
-    box-shadow 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease;
-  animation: swCardUp 0.5s ease both;
-  position: relative;
-  overflow: hidden;
-}
-
-/* top color bar on hover */
-#simara-widget .sw-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--ct, linear-gradient(90deg,#3b82f6,#06b6d4));
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-#simara-widget .sw-card:hover {
-  transform: translateY(-5px);
-  background: #fff;
-  border-color: var(--cb, #93c5fd);
-  box-shadow: 0 10px 32px rgba(0,0,0,0.09);
-  text-decoration: none !important;
-}
-
-#simara-widget .sw-card:hover::after { opacity: 1; }
-
-/* ── ICON ── */
-#simara-widget .sw-icon {
-  width: 68px;
+.pub-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 32px;
   height: 68px;
-  border-radius: 18px;
-  background: var(--ib, #dbeafe);
-  border: 1.5px solid var(--ibr, rgba(59,130,246,0.15));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  margin-bottom: 13px;
-  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+  position: sticky; top: 0; z-index: 100;
+}
+.pub-brand { display: flex; align-items: center; gap: 14px; }
+.pub-logo {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(29,78,216,.25);
+}
+.pub-brand-text .site-name {
+  font-family: 'Fraunces', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.3px;
+  display: block; line-height: 1;
+}
+.pub-brand-text .school-name {
+  font-size: 11px; font-weight: 500; color: var(--muted);
+  display: block; margin-top: 3px; letter-spacing: .1px;
+}
+.pub-header-actions { display: flex; align-items: center; gap: 10px; }
+.btn-admin {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px;
+  background: var(--bg); border: 1.5px solid var(--rule);
+  color: var(--muted); font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: all .2s; letter-spacing: .2px;
+}
+.btn-admin:hover { border-color: var(--accent); color: var(--accent); background: #eff6ff; }
+
+
+
+/* ── MAIN AREA ── */
+.pub-main {
+  max-width: 960px; margin: 0 auto;
+  padding: 40px 32px 64px;
+  width: 100%; flex: 1;
+}
+
+/* Section header */
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 600; color: var(--ink);
+  letter-spacing: -.3px;
+}
+.section-count {
+  font-size: 12px; font-weight: 500; color: var(--faint);
+}
+
+/* ── APP GRID ── */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+@media (max-width: 680px) { .app-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } }
+@media (max-width: 420px) { .app-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.app-card {
+  display: flex; flex-direction: column;
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  padding: 20px 16px 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, transform .22s cubic-bezier(.34,1.56,.64,1);
+  position: relative; overflow: hidden;
+  animation: cardRise .4s ease both;
+}
+.app-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--card-accent, #1d4ed8);
+  opacity: 0; transition: opacity .2s;
+}
+.app-card:hover {
+  border-color: rgba(29,78,216,.25);
+  box-shadow: 0 8px 28px rgba(0,0,0,.09);
+  transform: translateY(-3px);
+}
+.app-card:hover::before { opacity: 1; }
+
+@keyframes cardRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-icon-wrap {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--card-bg, #eff6ff);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 14px;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
   flex-shrink: 0;
 }
+.app-card:hover .card-icon-wrap { transform: scale(1.1) rotate(-4deg); }
 
-#simara-widget .sw-card:hover .sw-icon {
-  transform: scale(1.1) rotate(-4deg);
+.card-label {
+  font-size: 12px; font-weight: 600; color: var(--ink2);
+  line-height: 1.45; letter-spacing: -.1px;
 }
-
-/* ── LABEL ── */
-#simara-widget .sw-label {
-  font-size: 10.5px;
-  font-weight: 800;
-  color: #1e293b !important;
-  line-height: 1.45;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  display: block;
-  text-decoration: none !important;
+.card-arrow {
+  display: flex; align-items: center; justify-content: flex-end;
+  margin-top: auto; padding-top: 12px;
+  font-size: 13px; color: var(--faint);
+  opacity: 0; transform: translateX(-4px);
+  transition: opacity .2s, transform .2s;
 }
+.app-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
 
-/* ── COLOR VARIANTS ── */
-#simara-widget .cc-blue   { --cb:#93c5fd; --ct:linear-gradient(90deg,#3b82f6,#60a5fa); --ib:#dbeafe; --ibr:rgba(59,130,246,.2); }
-#simara-widget .cc-amber  { --cb:#fcd34d; --ct:linear-gradient(90deg,#f59e0b,#fbbf24); --ib:#fef3c7; --ibr:rgba(245,158,11,.2); }
-#simara-widget .cc-green  { --cb:#6ee7b7; --ct:linear-gradient(90deg,#10b981,#34d399); --ib:#d1fae5; --ibr:rgba(16,185,129,.2); }
-#simara-widget .cc-rose   { --cb:#fda4af; --ct:linear-gradient(90deg,#f43f5e,#fb7185); --ib:#ffe4e6; --ibr:rgba(244,63,94,.2); }
-#simara-widget .cc-purple { --cb:#c4b5fd; --ct:linear-gradient(90deg,#8b5cf6,#a78bfa); --ib:#ede9fe; --ibr:rgba(139,92,246,.2); }
-#simara-widget .cc-orange { --cb:#fdba74; --ct:linear-gradient(90deg,#f97316,#fb923c); --ib:#ffedd5; --ibr:rgba(249,115,22,.2); }
-#simara-widget .cc-teal   { --cb:#5eead4; --ct:linear-gradient(90deg,#14b8a6,#2dd4bf); --ib:#ccfbf1; --ibr:rgba(20,184,166,.2); }
-#simara-widget .cc-indigo { --cb:#a5b4fc; --ct:linear-gradient(90deg,#6366f1,#818cf8); --ib:#e0e7ff; --ibr:rgba(99,102,241,.2); }
-#simara-widget .cc-pink   { --cb:#f9a8d4; --ct:linear-gradient(90deg,#ec4899,#f472b6); --ib:#fce7f3; --ibr:rgba(236,72,153,.2); }
+/* Accent themes */
+.ca-blue   { --card-accent: #1d4ed8; --card-bg: #eff6ff; }
+.ca-amber  { --card-accent: #d97706; --card-bg: #fffbeb; }
+.ca-green  { --card-accent: #059669; --card-bg: #ecfdf5; }
+.ca-rose   { --card-accent: #e11d48; --card-bg: #fff1f2; }
+.ca-purple { --card-accent: #7c3aed; --card-bg: #f5f3ff; }
+.ca-orange { --card-accent: #ea580c; --card-bg: #fff7ed; }
+.ca-teal   { --card-accent: #0d9488; --card-bg: #f0fdfa; }
+.ca-indigo { --card-accent: #4f46e5; --card-bg: #eef2ff; }
+.ca-pink   { --card-accent: #db2777; --card-bg: #fdf2f8; }
+.ca-sky    { --card-accent: #0284c7; --card-bg: #f0f9ff; }
 
-/* ── ANIMATION ── */
-@keyframes swCardUp {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-#simara-widget .sw-card:nth-child(1){animation-delay:.05s}
-#simara-widget .sw-card:nth-child(2){animation-delay:.10s}
-#simara-widget .sw-card:nth-child(3){animation-delay:.15s}
-#simara-widget .sw-card:nth-child(4){animation-delay:.20s}
-#simara-widget .sw-card:nth-child(5){animation-delay:.25s}
-#simara-widget .sw-card:nth-child(6){animation-delay:.30s}
-#simara-widget .sw-card:nth-child(7){animation-delay:.35s}
-#simara-widget .sw-card:nth-child(8){animation-delay:.40s}
-#simara-widget .sw-card:nth-child(9){animation-delay:.45s}
+/* Mapping from old ct- to new ca- */
+.ct-blue   { --card-accent: #1d4ed8; --card-bg: #eff6ff; }
+.ct-amber  { --card-accent: #d97706; --card-bg: #fffbeb; }
+.ct-green  { --card-accent: #059669; --card-bg: #ecfdf5; }
+.ct-rose   { --card-accent: #e11d48; --card-bg: #fff1f2; }
+.ct-purple { --card-accent: #7c3aed; --card-bg: #f5f3ff; }
+.ct-orange { --card-accent: #ea580c; --card-bg: #fff7ed; }
+.ct-teal   { --card-accent: #0d9488; --card-bg: #f0fdfa; }
+.ct-indigo { --card-accent: #4f46e5; --card-bg: #eef2ff; }
+.ct-pink   { --card-accent: #db2777; --card-bg: #fdf2f8; }
+.ct-sky    { --card-accent: #0284c7; --card-bg: #f0f9ff; }
 
 /* ── FOOTER ── */
-#simara-widget .sw-footer {
-  text-align: center;
-  margin-top: 24px;
+.pub-footer {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+  padding: 18px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px;
+}
+.footer-brand {
+  font-family: 'Fraunces', serif;
+  font-size: 13px; font-weight: 600; color: var(--ink);
+}
+.footer-right {
+  font-size: 11px; font-weight: 500; color: var(--faint);
+  letter-spacing: .3px;
 }
 
-#simara-widget .sw-footer-inner {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: #f1f5f9;
-  border-radius: 99px;
-  padding: 6px 16px;
-}
+/* ==============================
+   ADMIN PAGE
+============================== */
+#page-admin { background: var(--bg); }
 
-#simara-widget .sw-footer-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: #0891b2;
+.adm-topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 32px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100; flex-shrink: 0;
+  box-shadow: 0 1px 12px rgba(0,0,0,.06);
+}
+.adm-brand { display: flex; align-items: center; gap: 12px; }
+.adm-brand-logo {
+  width: 38px; height: 38px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
+}
+.adm-brand-name {
+  font-family: 'Fraunces', serif;
+  font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: -.2px;
+}
+.adm-brand-sub { font-size: 10px; font-weight: 500; color: var(--muted); display: block; margin-top: 1px; }
+.adm-topbar-right { display: flex; gap: 10px; }
+.btn-back {
+  padding: 8px 16px; border-radius: 8px;
+  background: var(--bg); border: 1.5px solid var(--rule);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .2s;
+}
+.btn-back:hover { border-color: var(--ink2); color: var(--ink); }
+.btn-save {
+  padding: 8px 20px; border-radius: 8px; border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(29,78,216,.3); transition: filter .2s;
+}
+.btn-save:hover { filter: brightness(1.08); }
+
+/* Tabs */
+.adm-tabs {
+  display: flex; background: var(--white);
+  border-bottom: 1.5px solid var(--rule);
+  padding: 0 32px; overflow-x: auto; flex-shrink: 0;
+}
+.adm-tab {
+  padding: 14px 18px;
+  background: none; border: none; border-bottom: 2.5px solid transparent;
+  margin-bottom: -1.5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px; font-weight: 600; color: var(--muted);
+  cursor: pointer; white-space: nowrap;
+  transition: all .2s; display: flex; align-items: center; gap: 6px;
+}
+.adm-tab:hover { color: var(--ink); }
+.adm-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Content */
+.adm-content { max-width: 860px; margin: 0 auto; padding: 28px 32px 64px; width: 100%; }
+
+.adm-card {
+  background: var(--white); border-radius: 14px;
+  border: 1.5px solid var(--rule);
+  padding: 24px; margin-bottom: 20px;
+  box-shadow: 0 1px 8px rgba(0,0,0,.04);
+}
+.adm-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 16px; font-weight: 600; color: var(--ink);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 9px;
+}
+.adm-card-title .act-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
   flex-shrink: 0;
-  display: block;
+}
+.adm-hint { font-size: 12px; font-weight: 400; color: var(--muted); margin-bottom: 18px; line-height: 1.6; }
+
+/* Fields */
+.field-group { margin-bottom: 16px; }
+.field-row { display: grid; gap: 14px; grid-template-columns: 1fr; margin-bottom: 16px; }
+.field-row.two { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .field-row.two { grid-template-columns: 1fr; } }
+.field-label {
+  display: block; font-size: 11px; font-weight: 700;
+  color: var(--ink2); letter-spacing: .4px; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.field-input, .field-textarea, .field-select {
+  width: 100%; padding: 10px 14px;
+  border: 1.5px solid var(--rule); border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; color: var(--ink);
+  background: var(--bg); transition: border-color .2s, box-shadow .2s;
+}
+.field-input:focus, .field-textarea:focus, .field-select:focus {
+  outline: none; border-color: var(--accent); background: var(--white);
+  box-shadow: 0 0 0 3px rgba(29,78,216,.08);
+}
+.field-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.field-select { cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
 }
 
-#simara-widget .sw-footer-text {
-  font-size: 10px;
-  font-weight: 700;
-  color: #94a3b8;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  display: block;
+/* List items */
+.list-item {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg); border: 1.5px solid var(--rule);
+  border-radius: 10px; padding: 11px 14px;
+  margin-bottom: 8px; transition: border-color .2s;
 }
+.list-item:hover { border-color: #c7d7f5; }
+.drag-handle { color: var(--faint); font-size: 14px; cursor: grab; padding: 2px 4px; flex-shrink: 0; }
+.li-text {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 500; color: var(--ink);
+}
+.li-del {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: #fee2e2; color: #dc2626; border: none; font-size: 13px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .2s; flex-shrink: 0;
+}
+.li-del:hover { background: #dc2626; color: #fff; }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 600px) {
-  #simara-widget .sw-grid { grid-template-columns: repeat(3,1fr); gap:10px; }
-  #simara-widget .sw-icon { width:56px; height:56px; font-size:24px; border-radius:14px; }
-  #simara-widget .sw-card { padding:18px 8px 16px; }
-  #simara-widget .sw-label { font-size:9.5px; }
+/* Slide item */
+.slide-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg); border: 1.5px solid var(--rule);
+  border-radius: 11px; padding: 14px;
+  margin-bottom: 10px; transition: border-color .2s;
 }
-@media (max-width: 400px) {
-  #simara-widget .sw-grid { grid-template-columns: repeat(2,1fr); }
-  #simara-widget { padding:24px 12px 32px; }
+.slide-item:hover { border-color: #c7d7f5; }
+.slide-thumb {
+  width: 76px; height: 48px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0; overflow: hidden;
 }
+.slide-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.slide-fields { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.slide-fields input {
+  width: 100%; padding: 7px 11px;
+  border: 1.5px solid var(--rule); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 500; color: var(--ink); background: var(--white);
+  transition: border-color .2s;
+}
+.slide-fields input:focus { outline: none; border-color: var(--accent); }
+.slide-fields input::placeholder { color: var(--faint); font-weight: 400; }
+.slide-del {
+  padding: 7px 10px; border-radius: 8px; border: none;
+  background: #fee2e2; color: #dc2626; font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: all .2s; flex-shrink: 0;
+}
+.slide-del:hover { background: #dc2626; color: #fff; }
 
+/* App item */
+.app-admin-item {
+  background: var(--bg); border: 1.5px solid var(--rule);
+  border-radius: 12px; padding: 14px 16px;
+  margin-bottom: 10px; transition: border-color .2s;
+}
+.app-admin-item:hover { border-color: #c7d7f5; }
+.app-item-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.app-num {
+  width: 26px; height: 26px; border-radius: 7px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-size: 10px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.app-fields { flex: 1; display: grid; grid-template-columns: 70px 1fr 90px; gap: 8px; }
+@media (max-width: 560px) { .app-fields { grid-template-columns: 1fr; } }
+.app-fields input, .app-fields select {
+  padding: 7px 10px; border: 1.5px solid var(--rule); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 500; color: var(--ink); background: var(--white);
+  transition: border-color .2s; appearance: none;
+}
+.app-fields input:focus, .app-fields select:focus { outline: none; border-color: var(--accent); }
+.app-del {
+  padding: 7px 10px; border-radius: 8px; border: none;
+  background: #fee2e2; color: #dc2626; font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: all .2s; flex-shrink: 0;
+}
+.app-del:hover { background: #dc2626; color: #fff; }
+.app-url-row input {
+  width: 100%; padding: 7px 11px;
+  border: 1.5px solid var(--rule); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 500; color: var(--ink); background: var(--white);
+  transition: border-color .2s;
+}
+.app-url-row input:focus { outline: none; border-color: var(--accent); }
+
+/* Add btn */
+.btn-add {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 10px 18px;
+  background: none; border: 2px dashed var(--rule); border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px; font-weight: 600; color: var(--muted);
+  cursor: pointer; transition: all .2s;
+}
+.btn-add:hover { border-color: var(--accent); color: var(--accent); background: #eff6ff; }
+
+/* Mini preview */
+.mini-preview {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  background: var(--bg); border-radius: 10px; padding: 14px;
+  margin-top: 16px;
+}
+.mini-card {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  width: 60px; background: var(--white); border: 1.5px solid var(--rule);
+  border-radius: 9px; padding: 9px 6px; text-align: center;
+}
+.mini-icon {
+  width: 28px; height: 28px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center; font-size: 13px;
+}
+.mini-label { font-size: 7.5px; font-weight: 600; color: var(--muted); line-height: 1.3; }
+
+/* Pass change */
+.pass-btn {
+  padding: 10px 20px; border-radius: 9px; border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(29,78,216,.3); transition: filter .2s;
+  margin-top: 4px;
+}
+.pass-btn:hover { filter: brightness(1.08); }
+
+/* Panel visibility */
+.adm-panel { display: none; }
+.adm-panel.active { display: block; }
+
+/* ── LOGIN ── */
+.login-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(17,24,39,.85);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.login-box {
+  background: var(--white); border-radius: 20px;
+  padding: 40px 36px; width: 100%; max-width: 380px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.25);
+  text-align: center;
+  animation: loginUp .35s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes loginUp { from { transform: scale(.9) translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+.login-icon {
+  width: 64px; height: 64px; border-radius: 18px; margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center; font-size: 28px;
+  box-shadow: 0 8px 24px rgba(29,78,216,.3);
+}
+.login-box h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 5px;
+}
+.login-box p { font-size: 13px; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+.login-input {
+  width: 100%; padding: 12px 16px; border-radius: 10px;
+  border: 2px solid var(--rule);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; color: var(--ink);
+  background: var(--bg); margin-bottom: 14px;
+  transition: border-color .2s;
+}
+.login-input:focus { outline: none; border-color: var(--accent); background: var(--white); }
+.login-btn {
+  width: 100%; padding: 13px;
+  border: none; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(29,78,216,.3); transition: filter .2s;
+}
+.login-btn:hover { filter: brightness(1.08); }
+.login-err { color: #dc2626; font-size: 12px; font-weight: 600; margin-top: 10px; display: none; }
+.login-cancel {
+  background: none; border: none; color: var(--faint);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  margin-top: 14px; display: block; width: 100%;
+  transition: color .2s;
+}
+.login-cancel:hover { color: var(--muted); }
+
+/* ── TOAST ── */
+.toast-wrap { position: fixed; top: 76px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
+.toast {
+  background: var(--white); border-radius: 10px;
+  padding: 11px 16px; min-width: 220px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.12);
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  border-left: 4px solid #059669;
+  display: flex; align-items: center; gap: 8px;
+  animation: toastIn .25s ease;
+}
+.toast.err { border-left-color: #dc2626; }
+@keyframes toastIn { from { transform: translateX(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Responsive */
+@media (max-width: 680px) {
+  .pub-hero { padding: 36px 20px; }
+  .pub-header { padding: 0 20px; }
+  .pub-main { padding: 28px 20px 48px; }
+  .pub-footer { padding: 16px 20px; }
+  .adm-topbar { padding: 0 20px; }
+  .adm-tabs { padding: 0 20px; }
+  .adm-content { padding: 20px 20px 48px; }
+  .hero-stats { gap: 18px; }
+}
 </style>
 </head>
-<body style="background:#f1f5f9; padding:24px;">
+<body>
 
-<!-- ✅ PASANG KODE INI DI HALAMAN BLOG ANDA (mulai dari div#simara-widget) -->
-<div id="simara-widget">
+<div class="toast-wrap" id="toastWrap"></div>
 
-  <!-- HEADER -->
-  <div class="sw-header">
-    <div class="sw-logo-row">
-      <div class="sw-logo-left">
-        <div class="sw-logo-icon">🏫</div>
-        <div class="sw-logo-name">SIMARA</div>
-      </div>
-      <div class="sw-logo-right">
-        <span class="sw-sub1">Sistem Informasi</span>
-        <span class="sw-sub2">Manajemen Raja</span>
-      </div>
-    </div>
-    <span class="sw-school">SD Negeri 1 Raja</span>
-    <span class="sw-school-sub">Platform Digital Pendidikan</span>
-    <span class="sw-line"></span>
-  </div>
+<!-- ============================== PUBLIC PAGE ============================== -->
+<div class="page active" id="page-public">
 
-  <!-- GRID MENU -->
-  <div class="sw-grid">
-
-    <a href="https://hasbullahjaini1979-ship-it.github.io/supervisipm/" target="_blank" rel="noopener noreferrer" class="sw-card cc-amber">
-      <div class="sw-icon">🎯</div>
-      <span class="sw-label">Manajemen Supervisi Pembelajaran Mendalam</span>
-    </a>
-
-    <a href="https://hasbullahjaini1979-ship-it.github.io/laporanbulanan/" target="_blank" rel="noopener noreferrer" class="sw-card cc-blue">
-      <div class="sw-icon">📊</div>
-      <span class="sw-label">Manajemen Laporan Bulanan Kelas</span>
-    </a>
-
-    <a href="https://hasbullahjaini1979-ship-it.github.io/daftarnilai/" target="_blank" rel="noopener noreferrer" class="sw-card cc-green">
-      <div class="sw-icon">📝</div>
-      <span class="sw-label">Manajemen Daftar Nilai Murid</span>
-    </a>
-
-    <a href="https://hasbullahjaini1979-ship-it.github.io/arsipdigital/" target="_blank" rel="noopener noreferrer" class="sw-card cc-purple">
-      <div class="sw-icon">🗂️</div>
-      <span class="sw-label">Manajemen Arsip Perangkat Guru</span>
-    </a>
-
-    <a href="https://hasbullahjaini1979-ship-it.github.io/tv_informasi-sdn1raja/" target="_blank" rel="noopener noreferrer" class="sw-card cc-teal">
-      <div class="sw-icon">📺</div>
-      <span class="sw-label">TV Informasi Sekolah</span>
-    </a>
-
-    <a href="https://hasbullahjaini1979-ship-it.github.io/kinerjaguru/" target="_blank" rel="noopener noreferrer" class="sw-card cc-orange">
-      <div class="sw-icon">⭐</div>
-      <span class="sw-label">SI-TATA Guru Tata Tertib Sekolah</span>
-    </a>
-
-    <a href="https://hasbullahjaini1979-ship-it.github.io/komite/" target="_blank" rel="noopener noreferrer" class="sw-card cc-rose">
-      <div class="sw-icon">🤝</div>
-      <span class="sw-label">Manajemen Komite Sekolah</span>
-    </a>
-
-    <!-- BARU: SI-TATA MURID -->
-    <a href="https://hasbullahjaini1979-ship-it.github.io/siTATAmurid/" target="_blank" rel="noopener noreferrer" class="sw-card cc-indigo">
-      <div class="sw-icon">📋</div>
-      <span class="sw-label">SI-TATA Murid Tata Tertib Sekolah</span>
-    </a>
-
-    <!-- BARU: PROFIL PESERTA DIDIK -->
-    <a href="#" target="_blank" rel="noopener noreferrer" class="sw-card cc-pink">
-      <div class="sw-icon">👤</div>
-      <span class="sw-label">Manajemen Profil Peserta Didik</span>
-    </a>
-    
-        <!-- BARU: DAFTAR HADIR -->
-    <a href="https://hasbullahjaini1979-ship-it.github.io/daftarhadir/" target="_blank" rel="noopener noreferrer" class="sw-card cc-blue">
-      <div class="sw-icon">📝</div>
-      <span class="sw-label">Manajemen Daftar Hadir</span>
-    </a>
-
-  </div>
-
-  <!-- FOOTER -->
-  <div class="sw-footer">
-    <div class="sw-footer-inner">
-      <span class="sw-footer-dot"></span>
-      <span class="sw-footer-text">SIMARA · SD Negeri 1 Raja · 2025</span>
+  <!-- Ticker -->
+  <div class="ticker-bar" id="pubTicker">
+    <div class="ticker-badge">📢 Info</div>
+    <div class="ticker-track">
+      <div class="ticker-inner" id="tickerInner"></div>
     </div>
   </div>
 
+  <!-- Header -->
+  <div class="pub-header">
+    <div class="pub-brand">
+      <div class="pub-logo" id="pubLogoWrap">
+        <span id="pubLogoEmoji">🏫</span>
+      </div>
+      <div class="pub-brand-text">
+        <span class="site-name" id="pubSiteName">SIMARA</span>
+        <span class="school-name" id="pubSchoolName">SD Negeri 1 Raja</span>
+      </div>
+    </div>
+    <div class="pub-header-actions">
+      <button class="btn-admin" onclick="openAdmin()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Admin
+      </button>
+    </div>
+  </div>
+
+  <!-- App Menu -->
+  <div class="pub-main">
+    <div class="section-head">
+      <h2 class="section-title">Menu Aplikasi</h2>
+      <span class="section-count" id="appCountLabel">10 aplikasi tersedia</span>
+    </div>
+    <div class="app-grid" id="pubGrid"></div>
+  </div>
+
+  <div class="pub-footer">
+    <span class="footer-brand" id="pubSiteNameFooter">SIMARA</span>
+    <span class="footer-right" id="pubFooterText">SIMARA · SD Negeri 1 Raja · 2025</span>
+  </div>
 </div>
-<!-- ✅ AKHIR WIDGET -->
 
+<!-- ============================== LOGIN ============================== -->
+<div class="login-overlay" id="loginOverlay" style="display:none;">
+  <div class="login-box">
+    <div class="login-icon">🔐</div>
+    <h2>Panel Admin</h2>
+    <p>Masukkan password untuk mengakses pengaturan sistem</p>
+    <input class="login-input" id="loginPass" type="password" placeholder="Password"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Masuk</button>
+    <div class="login-err" id="loginErr">Password salah. Silakan coba lagi.</div>
+    <button class="login-cancel" onclick="closeLogin()">Batal</button>
+  </div>
+</div>
+
+<!-- ============================== ADMIN PAGE ============================== -->
+<div class="page" id="page-admin">
+
+  <div class="adm-topbar">
+    <div class="adm-brand">
+      <div class="adm-brand-logo">🏫</div>
+      <div>
+        <span class="adm-brand-name">SIMARA</span>
+        <span class="adm-brand-sub">Panel Admin</span>
+      </div>
+    </div>
+    <div class="adm-topbar-right">
+      <button class="btn-back" onclick="goPublic()">← Halaman Publik</button>
+      <button class="btn-save" onclick="saveAll()">Simpan Semua</button>
+    </div>
+  </div>
+
+  <div class="adm-tabs">
+    <button class="adm-tab active" onclick="switchTab('ticker')">📢 Running Text</button>
+    <button class="adm-tab" onclick="switchTab('apps')">📱 Menu Aplikasi</button>
+    <button class="adm-tab" onclick="switchTab('identity')">🏫 Identitas</button>
+    <button class="adm-tab" onclick="switchTab('security')">🔐 Keamanan</button>
+  </div>
+
+  <div class="adm-content">
+
+    <!-- TICKER -->
+    <div class="adm-panel active" id="panel-ticker">
+      <div class="adm-card">
+        <div class="adm-card-title"><div class="act-dot"></div>Teks Berjalan</div>
+        <p class="adm-hint">Pesan yang bergerak di bagian atas halaman. Ditampilkan secara berulang dan otomatis.</p>
+        <div id="tickerList"></div>
+        <button class="btn-add" onclick="addTicker()">＋ Tambah Pesan</button>
+      </div>
+    </div>
+
+    <!-- APPS -->
+    <div class="adm-panel" id="panel-apps">
+      <div class="adm-card">
+        <div class="adm-card-title"><div class="act-dot"></div>Menu Aplikasi</div>
+        <p class="adm-hint">Atur ikon, nama, warna, dan tautan untuk setiap aplikasi di halaman publik.</p>
+        <div id="appList"></div>
+        <button class="btn-add" onclick="addApp()">＋ Tambah Aplikasi</button>
+
+        <div style="margin-top:24px;">
+          <div style="font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px;">Preview</div>
+          <div class="mini-preview" id="miniPreview"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDENTITY -->
+    <div class="adm-panel" id="panel-identity">
+      <div class="adm-card">
+        <div class="adm-card-title"><div class="act-dot"></div>Identitas Sekolah</div>
+        <div class="field-row two">
+          <div>
+            <label class="field-label">Nama Sistem</label>
+            <input class="field-input" id="idSiteName" placeholder="SIMARA" type="text">
+          </div>
+          <div>
+            <label class="field-label">Nama Sekolah</label>
+            <input class="field-input" id="idSchoolName" placeholder="SD Negeri 1 Raja" type="text">
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label class="field-label">Teks Footer</label>
+            <input class="field-input" id="idFooter" placeholder="SIMARA · SD Negeri 1 Raja · 2025" type="text">
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label class="field-label">Ikon Logo (emoji)</label>
+            <input class="field-input" id="idLogo" maxlength="4" placeholder="🏫" type="text" style="width:120px;">
+            <p style="font-size:11.5px;color:var(--muted);margin-top:5px;">Contoh: 🏫 📚 🎓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="adm-panel" id="panel-security">
+      <div class="adm-card">
+        <div class="adm-card-title"><div class="act-dot"></div>Ubah Password Admin</div>
+        <div class="field-row">
+          <div>
+            <label class="field-label">Password Saat Ini</label>
+            <input class="field-input" id="oldPass" type="password" placeholder="Password lama">
+          </div>
+        </div>
+        <div class="field-row two">
+          <div>
+            <label class="field-label">Password Baru</label>
+            <input class="field-input" id="newPass" type="password" placeholder="Minimal 4 karakter">
+          </div>
+          <div>
+            <label class="field-label">Konfirmasi</label>
+            <input class="field-input" id="confirmPass" type="password" placeholder="Ulangi password baru">
+          </div>
+        </div>
+        <button class="pass-btn" onclick="changePassword()">Ubah Password</button>
+        <p style="font-size:11.5px;color:var(--muted);margin-top:12px;">Password default: <strong>admin123</strong></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── DEFAULTS ──
+const DEFAULTS = {
+  password: 'admin123',
+  siteName: 'SIMARA',
+  schoolName: 'SD Negeri 1 Raja',
+  footer: 'SIMARA · SD Negeri 1 Raja · 2025',
+  logo: '🏫',
+  tickers: [
+    'Selamat datang di SIMARA — Platform Digital SD Negeri 1 Raja',
+    'Sistem Informasi Manajemen Sekolah Terintegrasi untuk kemajuan pendidikan',
+    'Akses semua aplikasi manajemen sekolah dalam satu platform'
+  ],
+  apps: [
+    { icon: '🎯', label: 'Manajemen Supervisi Pembelajaran Mendalam', url: 'https://hasbullahjaini1979-ship-it.github.io/supervisipm/', color: 'ct-amber' },
+    { icon: '📊', label: 'Manajemen Laporan Bulanan Kelas', url: 'https://hasbullahjaini1979-ship-it.github.io/laporanbulanan/', color: 'ct-blue' },
+    { icon: '📝', label: 'Manajemen Daftar Nilai Murid', url: 'https://hasbullahjaini1979-ship-it.github.io/daftarnilai/', color: 'ct-green' },
+    { icon: '🗂️', label: 'Manajemen Arsip Perangkat Guru', url: 'https://hasbullahjaini1979-ship-it.github.io/arsipdigital/', color: 'ct-purple' },
+    { icon: '📺', label: 'TV Informasi Sekolah', url: 'https://hasbullahjaini1979-ship-it.github.io/tv_informasi-sdn1raja/', color: 'ct-teal' },
+    { icon: '⭐', label: 'SI-TATA Guru Tata Tertib Sekolah', url: 'https://hasbullahjaini1979-ship-it.github.io/kinerjaguru/', color: 'ct-orange' },
+    { icon: '🤝', label: 'Manajemen Komite Sekolah', url: 'https://hasbullahjaini1979-ship-it.github.io/komite/', color: 'ct-rose' },
+    { icon: '📋', label: 'SI-TATA Murid Tata Tertib Sekolah', url: 'https://hasbullahjaini1979-ship-it.github.io/siTATAmurid/', color: 'ct-indigo' },
+    { icon: '👤', label: 'Manajemen Profil Peserta Didik', url: '#', color: 'ct-pink' },
+    { icon: '📝', label: 'Manajemen Daftar Hadir', url: 'https://hasbullahjaini1979-ship-it.github.io/daftarhadir/', color: 'ct-sky' }
+  ]
+};
+
+// ── COLOR MAP ──
+const COLOR_OPTS = [
+  { cls: 'ct-blue',   hex: '#1d4ed8', label: 'Biru' },
+  { cls: 'ct-amber',  hex: '#d97706', label: 'Amber' },
+  { cls: 'ct-green',  hex: '#059669', label: 'Hijau' },
+  { cls: 'ct-rose',   hex: '#e11d48', label: 'Merah' },
+  { cls: 'ct-purple', hex: '#7c3aed', label: 'Ungu' },
+  { cls: 'ct-orange', hex: '#ea580c', label: 'Oranye' },
+  { cls: 'ct-teal',   hex: '#0d9488', label: 'Teal' },
+  { cls: 'ct-indigo', hex: '#4f46e5', label: 'Indigo' },
+  { cls: 'ct-pink',   hex: '#db2777', label: 'Pink' },
+  { cls: 'ct-sky',    hex: '#0284c7', label: 'Langit' }
+];
+const COLOR_HEX = {};
+COLOR_OPTS.forEach(c => COLOR_HEX[c.cls] = c.hex);
+const COLOR_BG = {
+  'ct-blue':'#eff6ff','ct-amber':'#fffbeb','ct-green':'#ecfdf5','ct-rose':'#fff1f2',
+  'ct-purple':'#f5f3ff','ct-orange':'#fff7ed','ct-teal':'#f0fdfa','ct-indigo':'#eef2ff',
+  'ct-pink':'#fdf2f8','ct-sky':'#f0f9ff'
+};
+
+// ── STORAGE ──
+function load(k, fb) {
+  try { const v = localStorage.getItem('simara_' + k); return v ? JSON.parse(v) : fb; } catch { return fb; }
+}
+function save(k, v) { localStorage.setItem('simara_' + k, JSON.stringify(v)); }
+
+let CFG = {
+  password:   load('password',   DEFAULTS.password),
+  siteName:   load('siteName',   DEFAULTS.siteName),
+  schoolName: load('schoolName', DEFAULTS.schoolName),
+  footer:     load('footer',     DEFAULTS.footer),
+  logo:       load('logo',       DEFAULTS.logo),
+  tickers:    load('tickers',    DEFAULTS.tickers),
+  apps:       load('apps',       DEFAULTS.apps)
+};
+
+// ── PAGES ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+}
+function goPublic() { showPage('public'); renderPublic(); }
+
+// ── LOGIN ──
+function openAdmin() {
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('loginErr').style.display = 'none';
+  setTimeout(() => document.getElementById('loginPass').focus(), 100);
+}
+function closeLogin() { document.getElementById('loginOverlay').style.display = 'none'; }
+function doLogin() {
+  if (document.getElementById('loginPass').value === CFG.password) {
+    closeLogin(); showPage('admin'); renderAdmin();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
+  }
+}
+
+// ── PUBLIC RENDER ──
+function renderPublic() {
+  document.getElementById('pubSiteName').textContent    = CFG.siteName   || 'SIMARA';
+  document.getElementById('pubSiteNameFooter').textContent = CFG.siteName || 'SIMARA';
+  document.getElementById('pubSchoolName').textContent  = CFG.schoolName || 'SD Negeri 1 Raja';
+  document.getElementById('pubFooterText').textContent  = CFG.footer     || '';
+  document.getElementById('pubLogoEmoji').textContent   = CFG.logo       || '🏫';
+
+  const count = (CFG.apps || []).length;
+  document.getElementById('appCountLabel').textContent = count + ' aplikasi tersedia';
+
+  renderTicker();
+  renderGrid();
+}
+
+function renderTicker() {
+  const inner = document.getElementById('tickerInner');
+  const msgs = (CFG.tickers || []).filter(t => t.trim());
+  const fallback = [CFG.siteName || 'SIMARA'];
+  const all = [...(msgs.length ? msgs : fallback), ...(msgs.length ? msgs : fallback)];
+  inner.innerHTML = all.map(m => '<span>' + esc(m) + '</span>').join('');
+}
+
+function renderGrid() {
+  const grid = document.getElementById('pubGrid');
+  const apps = CFG.apps || [];
+  if (!apps.length) {
+    grid.innerHTML = '<p style="color:var(--muted);font-size:13px;grid-column:1/-1;text-align:center;padding:24px;">Belum ada menu aplikasi.</p>';
+    return;
+  }
+  grid.innerHTML = apps.map((a, i) => {
+    const url = a.url && a.url !== '#' ? a.url : '#';
+    const target = url !== '#' ? ' target="_blank" rel="noopener"' : '';
+    const delay = (i * 0.05) + 's';
+    const bgColor = COLOR_BG[a.color] || '#eff6ff';
+    const accentColor = COLOR_HEX[a.color] || '#1d4ed8';
+    return '<a href="' + escA(url) + '"' + target + ' class="app-card ' + (a.color || 'ct-blue') + '" style="animation-delay:' + delay + '">'
+      + '<div class="card-icon-wrap" style="background:' + bgColor + '">' + (a.icon || '📱') + '</div>'
+      + '<div class="card-label">' + esc(a.label || 'Aplikasi') + '</div>'
+      + '<div class="card-arrow">→</div>'
+      + '</a>';
+  }).join('');
+}
+
+// ── ADMIN RENDER ──
+function renderAdmin() {
+  renderAdminTicker();
+  renderAdminApps();
+  renderAdminIdentity();
+}
+
+function renderAdminTicker() {
+  const list = document.getElementById('tickerList');
+  list.innerHTML = '';
+  (CFG.tickers || []).forEach((t, i) => {
+    const d = document.createElement('div');
+    d.className = 'list-item';
+    d.innerHTML = '<span class="drag-handle">⠿</span>'
+      + '<input class="li-text" type="text" value="' + escA(t) + '" placeholder="Tulis pesan..." data-idx="' + i + '">'
+      + '<button class="li-del" onclick="delTicker(' + i + ')">✕</button>';
+    list.appendChild(d);
+  });
+}
+function addTicker() { CFG.tickers.push('Pesan baru...'); renderAdminTicker(); }
+function delTicker(i) { CFG.tickers.splice(i, 1); renderAdminTicker(); }
+function readTickers() { CFG.tickers = Array.from(document.querySelectorAll('#tickerList .li-text')).map(el => el.value); }
+
+function renderAdminApps() {
+  const list = document.getElementById('appList');
+  list.innerHTML = '';
+  (CFG.apps || []).forEach((a, i) => {
+    const colorOptions = COLOR_OPTS.map(c =>
+      '<option value="' + c.cls + '"' + (a.color === c.cls ? ' selected' : '') + '>' + c.label + '</option>'
+    ).join('');
+
+    const wrap = document.createElement('div');
+    wrap.className = 'app-admin-item';
+    wrap.innerHTML = '<div class="app-item-row">'
+        + '<div class="app-num">' + (i + 1) + '</div>'
+        + '<div class="app-fields">'
+          + '<input type="text" placeholder="Ikon" data-field="icon" value="' + escA(a.icon||'') + '" maxlength="4" style="text-align:center;font-size:18px;">'
+          + '<input type="text" placeholder="Nama aplikasi..." data-field="label" value="' + escA(a.label||'') + '">'
+          + '<select data-field="color" onchange="updateMiniPreview()">' + colorOptions + '</select>'
+        + '</div>'
+        + '<button class="app-del" onclick="delApp(' + i + ')">✕</button>'
+      + '</div>'
+      + '<div class="app-url-row"><input type="url" placeholder="URL tautan (https://...)" data-field="url" value="' + escA(a.url||'') + '"></div>';
+
+    const urlInput = wrap.querySelector('[data-field="url"]');
+    urlInput.addEventListener('focus', () => urlInput.style.borderColor = 'var(--accent)');
+    urlInput.addEventListener('blur', () => urlInput.style.borderColor = 'var(--rule)');
+    list.appendChild(wrap);
+  });
+  updateMiniPreview();
+}
+function addApp() { CFG.apps.push({ icon: '📱', label: 'Aplikasi Baru', url: '#', color: 'ct-blue' }); renderAdminApps(); }
+function delApp(i) { readApps(); CFG.apps.splice(i, 1); renderAdminApps(); }
+function readApps() {
+  CFG.apps = Array.from(document.querySelectorAll('#appList .app-admin-item')).map(w => ({
+    icon:  w.querySelector('[data-field="icon"]').value,
+    label: w.querySelector('[data-field="label"]').value,
+    color: w.querySelector('[data-field="color"]').value,
+    url:   w.querySelector('[data-field="url"]').value
+  }));
+}
+function updateMiniPreview() {
+  readApps();
+  document.getElementById('miniPreview').innerHTML = CFG.apps.map(a => {
+    const hex = COLOR_HEX[a.color] || '#1d4ed8';
+    const bg  = COLOR_BG[a.color] || '#eff6ff';
+    return '<div class="mini-card">'
+      + '<div class="mini-icon" style="background:' + bg + '">' + (a.icon || '📱') + '</div>'
+      + '<div class="mini-label">' + esc((a.label||'').substring(0,18)) + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function renderAdminIdentity() {
+  document.getElementById('idSiteName').value   = CFG.siteName   || '';
+  document.getElementById('idSchoolName').value = CFG.schoolName || '';
+  document.getElementById('idFooter').value     = CFG.footer     || '';
+  document.getElementById('idLogo').value       = CFG.logo       || '';
+}
+function readIdentity() {
+  CFG.siteName   = document.getElementById('idSiteName').value.trim()   || 'SIMARA';
+  CFG.schoolName = document.getElementById('idSchoolName').value.trim() || 'SD Negeri 1 Raja';
+  CFG.footer     = document.getElementById('idFooter').value.trim()     || '';
+  CFG.logo       = document.getElementById('idLogo').value.trim()       || '🏫';
+}
+
+// ── SAVE ──
+function saveAll() {
+  readTickers(); readApps(); readIdentity();
+  Object.keys(CFG).forEach(k => save(k, CFG[k]));
+  toast('Semua pengaturan berhasil disimpan.');
+  renderAdmin();
+}
+
+// ── PASSWORD ──
+function changePassword() {
+  const oldP = document.getElementById('oldPass').value;
+  const newP = document.getElementById('newPass').value;
+  const conP = document.getElementById('confirmPass').value;
+  if (oldP !== CFG.password) { toast('Password lama tidak sesuai.', true); return; }
+  if (!newP || newP.length < 4) { toast('Password baru minimal 4 karakter.', true); return; }
+  if (newP !== conP) { toast('Konfirmasi password tidak cocok.', true); return; }
+  CFG.password = newP; save('password', newP);
+  ['oldPass','newPass','confirmPass'].forEach(id => document.getElementById(id).value = '');
+  toast('Password berhasil diubah.');
+}
+
+// ── TABS ──
+function switchTab(name) {
+  const names = ['ticker','apps','identity','security'];
+  document.querySelectorAll('.adm-tab').forEach((t, i) => t.classList.toggle('active', names[i] === name));
+  document.querySelectorAll('.adm-panel').forEach((p, i) => p.classList.toggle('active', names[i] === name));
+}
+
+// ── UTILS ──
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escA(s) { return String(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+function toast(msg, isErr) {
+  const wrap = document.getElementById('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast' + (isErr ? ' err' : '');
+  el.textContent = (isErr ? '⚠ ' : '✓ ') + msg;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// ── INIT ──
+window.addEventListener('load', renderPublic);
+</script>
 </body>
 </html>
