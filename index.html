@@ -1107,7 +1107,7 @@ let CFG = {
   logo:       loadData('logo',       DEFAULTS.logo),
   logoImage:  loadData('logoImage',  DEFAULTS.logoImage),
   website:    loadData('website',    DEFAULTS.website),
-  gasUrl:     loadData('gasUrl',     DEFAULTS.gasUrl),
+  gasUrl:     loadData('gasUrl', DEFAULTS.gasUrl) || DEFAULTS.gasUrl,
   tickers:    loadData('tickers',    DEFAULTS.tickers),
   apps:       loadData('apps',       DEFAULTS.apps),
   trialApps:  loadData('trialApps',  DEFAULTS.trialApps)
@@ -1135,6 +1135,17 @@ function trackVisit(id, label, type, url) {
     const params = new URLSearchParams({ action: 'track', id: id, label: label || '', type: type || 'app', url: url || '' });
     const sep = CFG.gasUrl.indexOf('?') > -1 ? '&' : '?';
     const img = new Image();
+    // Begitu server selesai mencatat kunjungan (atau gagal), otomatis muat ulang
+    // statistik -- setara dengan mengklik "Simpan & Muat Statistik" -- supaya
+    // badge 👁 di menu publik dan tabel di dasbor admin langsung berubah.
+    img.onload = img.onerror = function () {
+      const statsPanel = document.getElementById('panel-stats');
+      if (statsPanel && statsPanel.classList.contains('active')) {
+        refreshStats(); // dasbor admin sedang terbuka -> muat ulang tabel statistik
+      } else {
+        loadVisitCounts(); // cukup perbarui badge 👁 di menu publik
+      }
+    };
     img.src = CFG.gasUrl + sep + params.toString();
   } catch (e) { /* ignore network errors, never block navigation */ }
 }
