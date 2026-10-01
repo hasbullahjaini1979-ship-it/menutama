@@ -1079,7 +1079,8 @@ const DEFAULTS = {
     { icon: '📝', label: 'Manajemen Daftar Hadir', url: 'https://hasbullahjaini1979-ship-it.github.io/daftarhadir/', color: 'ct-sky' }
   ],
   trialApps: [
-    { icon: '🪑', label: 'Manajemen Sarana Kelas', url: 'https://hasbullahjaini1979-ship-it.github.io/saranakelas/', badge: 'BETA', desc: 'Versi Uji Coba • Masukan Anda Sangat Berharga' }
+    { icon: '🪑', label: 'Manajemen Sarana Kelas', url: 'https://hasbullahjaini1979-ship-it.github.io/saranakelas/', badge: 'BETA', desc: 'Versi Uji Coba • Masukan Anda Sangat Berharga' },
+    { icon: '📋', label: 'Instrumen Outcome SIMARA', url: 'https://digital7madurejo.github.io/Instrumen-Simara/', badge: 'BETA', desc: 'Versi Uji Coba • Masukan Anda Sangat Berharga' }
   ]
 };
 
@@ -1112,6 +1113,19 @@ let CFG = {
   apps:       loadData('apps',       DEFAULTS.apps),
   trialApps:  loadData('trialApps',  DEFAULTS.trialApps)
 };
+
+// Migrasi satu kali: tambahkan menu Instrumen Outcome SIMARA bagi browser yang sudah punya data tersimpan
+(function() {
+  try {
+    if (localStorage.getItem('simara_migr_instrumen')) return;
+    const u = 'https://digital7madurejo.github.io/Instrumen-Simara/';
+    if (!(CFG.trialApps || []).some(t => t.url === u)) {
+      CFG.trialApps = (CFG.trialApps || []).concat(DEFAULTS.trialApps.filter(t => t.url === u));
+      saveData('trialApps', CFG.trialApps);
+    }
+    localStorage.setItem('simara_migr_instrumen', '1');
+  } catch(e) {}
+})();
 
 // ============================================================
 // VISIT TRACKING (Google Sheet via Apps Script)
